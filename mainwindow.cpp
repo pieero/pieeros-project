@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setAcceptDrops(true);
+    m_pSoundButton = new SoundButton(ui->centralWidget);
 }
 
 MainWindow::~MainWindow()

@@ -2,6 +2,7 @@
 #define SOUNDBUTTON_H
 
 #include <QWidget>
+#include <QDropEvent>
 #include <phonon/MediaSource>
 #include <phonon/MediaObject>
 
@@ -16,6 +17,7 @@ class SoundButton : public QWidget
 public:
     explicit SoundButton(QWidget *parent = 0);
     ~SoundButton();
+    void dropEvent(QDropEvent *event);
 
 public slots:
     void setSource(QString p_path);

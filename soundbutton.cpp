@@ -8,6 +8,7 @@ SoundButton::SoundButton(QWidget *parent) :
     ui->setupUi(this);
     m_pmediaobject = new Phonon::MediaObject(this);
     this->connect(this->m_pmediaobject,SIGNAL(finished()),this,SLOT(uncheckButton()));
+    ui->button->setAcceptDrops(true);
 }
 
 SoundButton::~SoundButton()
@@ -15,6 +16,15 @@ SoundButton::~SoundButton()
     delete ui;
     delete m_pmediaobject;
 }
+
+void SoundButton::dropEvent(QDropEvent *event)
+    {
+        QString url = event->mimeData()->text();
+        //mimeTypeCombo->clear();
+        //mimeTypeCombo->addItems(event->mimeData()->formats());
+
+        event->acceptProposedAction();
+    }
 
 void SoundButton::toggleSound()
 {
