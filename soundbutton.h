@@ -18,6 +18,8 @@ public:
     explicit SoundButton(QWidget *parent = 0);
     ~SoundButton();
     void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+
 
 public slots:
     void setSource(QString p_path);

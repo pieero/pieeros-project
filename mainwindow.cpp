@@ -5,9 +5,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QCoreApplication::setApplicationName("AkoosticPlayer");
     ui->setupUi(this);
     setAcceptDrops(true);
     m_pSoundButton = new SoundButton(ui->centralWidget);
+
 }
 
 MainWindow::~MainWindow()
