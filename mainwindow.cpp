@@ -8,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setApplicationName("AkoosticPlayer");
     ui->setupUi(this);
     setAcceptDrops(true);
-    m_pSoundButton = new SoundButton(ui->centralWidget);
+    m_pBoardSelector = new BoardSelector(ui->centralWidget);
+    ui->centralWidget->layout()->addWidget(m_pBoardSelector);
+
+    this->connect(ui->AddTabButton,SIGNAL(released()),m_pBoardSelector,SLOT(addBoard()));
 
 }
 

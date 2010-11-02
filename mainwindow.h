@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "soundbutton.h"
+#include "boardselector.h"
+
 
 namespace Ui {
     class MainWindow;
@@ -18,7 +19,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    SoundButton* m_pSoundButton;
+    BoardSelector* m_pBoardSelector;
 };
 
 #endif // MAINWINDOW_H

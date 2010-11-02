@@ -9,10 +9,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
     soundbutton.cpp \
-    soundboard.cpp
+    soundboard.cpp \
+    boardselector.cpp
 HEADERS += mainwindow.h \
     soundbutton.h \
-    soundboard.h
+    soundboard.h \
+    boardselector.h
 FORMS += mainwindow.ui \
     soundbutton.ui \
-    soundboard.ui
+    soundboard.ui \
+    boardselector.ui
