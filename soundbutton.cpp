@@ -2,6 +2,7 @@
 #include "ui_soundbutton.h"
 #include <QFileInfo>
 #include <QUrl>
+#include <QTextCodec>
 
 SoundButton::SoundButton(QWidget *parent) :
     QWidget(parent),
@@ -32,10 +33,42 @@ void SoundButton::dragEnterEvent(QDragEnterEvent *event)
 
 void SoundButton::dropEvent(QDropEvent *event)
 {
-    QString mimetext = event->mimeData()->text();
+    QString mimetext;
+    const QMimeData* mimeData = event->mimeData();
+    if (mimeData->hasImage()) {
+             //setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
+        mimetext = "Image";
+         } else if (mimeData->hasHtml()) {
+            mimetext = mimeData->html();
+            // setTextFormat(Qt::RichText);
+         } else if (mimeData->hasText()) {
+           mimetext = mimeData->text();
+          //   setTextFormat(Qt::PlainText);
+         } else if (mimeData->hasUrls()) {
+             QList<QUrl> urlList = mimeData->urls();
+             QString text;
+             for (int i = 0; i < urlList.size() && i < 32; ++i) {
+                 QString url = urlList.at(i).path();
+                 mimetext = url;
+                 break;
+                 text += url + QString("\n");
+             }
+            // setText(text);
+         } else {
+             mimetext = "NULL";
+            // setText(tr("Cannot display data"));
+         }
+
+
     mimetext.replace("\r\n","");
+
+    QByteArray block(mimetext.toAscii());
+
     std::string memstr = mimetext.toStdString();
-    QString path = QUrl(mimetext).toLocalFile();
+
+    QString irl = QUrl::fromPercentEncoding(block);
+    std::string irlstr = irl.toStdString();
+    QString path = QUrl(irl).toLocalFile();
     std::string pathstr = path.toStdString();
     QString name = QFileInfo(path).baseName();
     ui->button->setText(name);
