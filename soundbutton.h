@@ -5,6 +5,7 @@
 #include <QDropEvent>
 #include <phonon/MediaSource>
 #include <phonon/MediaObject>
+#include <phonon/AudioOutput>
 
 namespace Ui {
     class SoundButton;
@@ -30,8 +31,10 @@ protected slots:
 
 private:
     Ui::SoundButton *ui;
+    QString m_path;
     Phonon::MediaSource m_source;
     Phonon::MediaObject* m_pmediaobject;
+    Phonon::AudioOutput* m_paudioOutput;
 };
 
 #endif // SOUNDBUTTON_H
