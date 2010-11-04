@@ -17,6 +17,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void savePresetAs(QString p_presetName);
+    void addSoundBoardAs(QString);
+
+protected slots:
+    void savePreset();
+    void loadPreset(QString p_presetName);
+    void addSoundBoard();
+
 private:
     Ui::MainWindow *ui;
     BoardSelector* m_pBoardSelector;

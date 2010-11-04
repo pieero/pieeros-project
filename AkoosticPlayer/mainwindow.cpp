@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFile>
+#include "newsoundboarddialog.h"
+#include "savepresetdialog.h"
 
 //! \brief qss file loading for ihm appearance
 //! \param qss file path
@@ -32,14 +34,46 @@ MainWindow::MainWindow(QWidget *parent) :
     m_pBoardSelector = new BoardSelector(ui->centralWidget);
     ui->centralWidget->layout()->addWidget(m_pBoardSelector);
 
-    this->connect(ui->AddTabButton,SIGNAL(released()),m_pBoardSelector,SLOT(addBoard()));
+    this->connect(ui->AddTabButton,SIGNAL(released()),this,SLOT(addSoundBoard()));
+    this->connect(ui->savePresetButton,SIGNAL(released()),this,SLOT(savePreset()));
 
     loadStyleSheet(":/style/style.css");
-
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::savePreset()
+{
+    SavePresetDialog presetDialog(this);
+    connect(&presetDialog,SIGNAL(savePresetAs(QString)),this,SLOT(savePresetAs(QString)));
+    presetDialog.setModal(true);
+    presetDialog.exec();
+}
+
+void MainWindow::savePresetAs(QString p_presetName)
+{
+
+}
+
+void MainWindow::loadPreset(QString p_presetName)
+{
+
+}
+
+void MainWindow::addSoundBoard()
+{
+    NewSoundBoardDialog newSoundBoardDialog(this);
+    connect(&newSoundBoardDialog,SIGNAL(addSoundBoardAs(QString)),this,SLOT(addSoundBoardAs(QString)));
+    newSoundBoardDialog.setModal(true);
+    newSoundBoardDialog.exec();
+
+}
+
+void  MainWindow::addSoundBoardAs(QString p_name)
+{
+    m_pBoardSelector->addBoard(p_name);
 }
