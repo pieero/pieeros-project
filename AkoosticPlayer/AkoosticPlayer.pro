@@ -19,3 +19,5 @@ FORMS += mainwindow.ui \
     soundbutton.ui \
     soundboard.ui \
     boardselector.ui
+OTHER_FILES += style.css
+RESOURCES += Resources.qrc

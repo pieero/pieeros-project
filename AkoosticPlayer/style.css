@@ -1,0 +1,20 @@
+QToolButton[objectName="AddColumnButton"] QToolButton[objectName="AddRowButton"] {
+        image: url(:/icon/add);
+}
+
+QToolButton[objectName="RemoveColumnButton"] QToolButton[objectName="RemoveRowButton"] {
+        image: url(:/icon/remove);
+}
+
+QToolButton[objectName="savePresetButton"] {
+        image: url(:/icon/save);
+}
+
+QToolButton[objectName="AddTabButton"] {
+        image: url(:/icon/new);
+}
+
+QToolButton[objectName="CloseButton"] {
+        image: url(:/icon/close);
+}
+
