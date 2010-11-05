@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "boardselector.h"
+#include <QDir>
 
 
 namespace Ui {
@@ -26,9 +27,14 @@ protected slots:
     void loadPreset(QString p_presetName);
     void addSoundBoard();
 
+protected:
+    void loadPresetList();
+
 private:
+
     Ui::MainWindow *ui;
     BoardSelector* m_pBoardSelector;
+    QDir m_presetFolder;
 };
 
 #endif // MAINWINDOW_H

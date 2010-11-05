@@ -3,6 +3,7 @@
 #include <QFile>
 #include "newsoundboarddialog.h"
 #include "savepresetdialog.h"
+#include <QDir>
 
 //! \brief qss file loading for ihm appearance
 //! \param qss file path
@@ -39,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     loadStyleSheet(":/style/style.css");
 
+    loadPresetList();
+
 }
 
 MainWindow::~MainWindow()
@@ -56,7 +59,11 @@ void MainWindow::savePreset()
 
 void MainWindow::savePresetAs(QString p_presetName)
 {
-
+    QFile presetFile;
+    presetFile.setFileName(m_presetFolder.absoluteFilePath(p_presetName));
+    presetFile.open(QFile::WriteOnly);
+    presetFile.write("");
+    presetFile.close();
 }
 
 void MainWindow::loadPreset(QString p_presetName)
@@ -76,4 +83,53 @@ void MainWindow::addSoundBoard()
 void  MainWindow::addSoundBoardAs(QString p_name)
 {
     m_pBoardSelector->addBoard(p_name);
+}
+
+void MainWindow::loadPresetList()
+{
+    char * pPath;
+    QDir m_presetFolder,HomeFolder;
+    bool ret = false;
+    do{
+      pPath = getenv ("HOME");
+      if (pPath!=NULL) // Home is for Linux
+      {
+           HomeFolder.setPath(QString(pPath));
+           m_presetFolder.setPath(HomeFolder.absolutePath() + ".AkoosticPlayer/presets");
+           if(!m_presetFolder.exists())
+           {
+               ret = HomeFolder.mkdir(".AkoosticPlayer");
+               QDir tmp = HomeFolder;
+               ret = tmp.cd(".AkoosticPlayer");
+               ret = tmp.mkdir("presets");
+           }
+           break;
+      }
+      pPath = getenv ("APPDATA");
+      if (pPath!=NULL) // Home is for Linux
+      {
+          HomeFolder.setPath(QString(pPath));
+          m_presetFolder.setPath(HomeFolder.absolutePath() + "AkoosticPlayer/presets");
+          if(!m_presetFolder.exists())
+          {
+              ret = HomeFolder.mkdir("AkoosticPlayer");
+              QDir tmp = HomeFolder;
+              ret = tmp.cd(".AkoosticPlayer");
+              ret = tmp.mkdir("presets");
+          }
+          break;
+      }
+  }while(false);
+
+
+
+
+  QStringList fileList = m_presetFolder.entryList();
+
+  ui->Presets->clear();
+  for(QStringList::iterator it = fileList.begin(); it < fileList.end(); it++)
+  {
+    ui->Presets->addItem(*it);
+  }
+
 }
