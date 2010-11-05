@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/style">
+        <file alias="style.css">style.css</file>
+    </qresource>
+    <qresource prefix="/icon">
+        <file alias="new">Resources/document-new.png</file>
+        <file alias="save">Resources/document-save.png</file>
+        <file alias="clear">Resources/edit-clear.png</file>
+        <file alias="add">Resources/list-add.png</file>
+        <file alias="remove">Resources/list-remove.png</file>
+        <file alias="stop">Resources/process-stop.png</file>
+    </qresource>
+</RCC>
