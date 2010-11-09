@@ -6,6 +6,7 @@ SavePresetDialog::SavePresetDialog(QWidget *parent) :
     ui(new Ui::SavePresetDialog)
 {
     ui->setupUi(this);
+    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(validatePresetName()));
 }
 
 SavePresetDialog::~SavePresetDialog()
@@ -23,4 +24,9 @@ void SavePresetDialog::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void SavePresetDialog::validatePresetName()
+{
+    emit savePresetAs(ui->lineEdit->text());
 }

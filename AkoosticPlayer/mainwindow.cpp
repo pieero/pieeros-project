@@ -59,11 +59,27 @@ void MainWindow::savePreset()
 
 void MainWindow::savePresetAs(QString p_presetName)
 {
-    QFile presetFile;
-    presetFile.setFileName(m_presetFolder.absoluteFilePath(p_presetName));
+    QFile presetFile(m_presetFolder.absoluteFilePath(p_presetName));
     presetFile.open(QFile::WriteOnly);
     presetFile.write("");
     presetFile.close();
+    bool inserted = false;
+    for(int i = 0; i < ui->Presets->count();i++)
+    {
+      if(p_presetName.compare(ui->Presets->itemText(i)) == 0)
+      {
+          inserted = true;
+          break;
+      }
+
+      if(p_presetName.compare(ui->Presets->itemText(i)) > 0)
+      {
+          ui->Presets->insertItem(i,p_presetName);
+          inserted = true;
+      }
+    }
+    ui->Presets->addItem(p_presetName);
+    ui->Presets->setCurrentIndex(ui->Presets->findText(p_presetName));
 }
 
 void MainWindow::loadPreset(QString p_presetName)

@@ -16,6 +16,9 @@ public:
 signals:
     void savePresetAs(QString);
 
+protected slots:
+    void validatePresetName();
+
 protected:
     void changeEvent(QEvent *e);
 
