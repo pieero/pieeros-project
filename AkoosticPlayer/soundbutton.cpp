@@ -70,8 +70,6 @@ void SoundButton::dropEvent(QDropEvent *event)
     std::string irlstr = irl.toStdString();
     QString path = QUrl(irl).toLocalFile();
     std::string pathstr = path.toStdString();
-    QString name = QFileInfo(path).baseName();
-    ui->button->setText(name);
     setSource(path);
     //mimeTypeCombo->clear();
     //mimeTypeCombo->addItems(event->mimeData()->formats());
@@ -105,4 +103,32 @@ void SoundButton::setSource(QString p_path)
     m_source = Phonon::MediaSource(m_path);
     m_pmediaobject->setCurrentSource(m_source);
     ui->button->setEnabled(true);
+    QString name = QFileInfo(p_path).baseName();
+    ui->button->setText(name);
+}
+
+std::ostream& SoundButton::operator >>(std::ostream& p_rhs)
+{
+    QString tmp = m_path;
+    if(tmp.size() == 0)
+    {
+        tmp = "NULL";
+    }
+    tmp.replace(" ","&nbsp;");
+    p_rhs << tmp.toStdString();
+    return p_rhs;
+
+}
+
+std::istream& SoundButton::operator <<(std::istream& p_rhs)
+{
+    std::string tmpstr;
+    p_rhs >> tmpstr;
+    QString tmp(tmpstr.c_str());
+    tmp.replace("&nbsp;"," ");
+    if(tmp.compare("NULL") != 0)
+    {
+        setSource(tmp);
+    }
+    return p_rhs;
 }

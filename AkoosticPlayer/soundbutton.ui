@@ -38,7 +38,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string/>
+      <string>No Sound</string>
      </property>
      <property name="checkable">
       <bool>true</bool>

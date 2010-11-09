@@ -6,6 +6,7 @@
 #include <phonon/MediaSource>
 #include <phonon/MediaObject>
 #include <phonon/AudioOutput>
+#include <iostream>
 
 namespace Ui {
     class SoundButton;
@@ -20,7 +21,8 @@ public:
     ~SoundButton();
     void dropEvent(QDropEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
-
+    std::ostream& operator >>(std::ostream& p_rhs);
+    std::istream& operator <<(std::istream& p_rhs);
 
 public slots:
     void setSource(QString p_path);

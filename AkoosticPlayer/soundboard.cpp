@@ -132,15 +132,17 @@ void SoundBoard::removeColumn()
 
 std::ostream& SoundBoard::operator >>(std::ostream& p_rhs)
 {
-    p_rhs << m_vect2dSoundButton.size();
-    p_rhs << m_vect2dSoundButton[0].size();
+    p_rhs << m_vect2dSoundButton.size() << " ";
+    p_rhs << m_vect2dSoundButton[0].size() << std::endl;
 
     for(int i=0;i<m_vect2dSoundButton.size();i++)
     {
         for(int j=0;j<m_vect2dSoundButton[i].size();j++)
         {
-            //*(m_vect2dSoundButton[i][j]) >> p_rhs;
+            *(m_vect2dSoundButton[i][j]) >> p_rhs;
+            p_rhs << " ";
         }
+        p_rhs << std::endl;
     }
     return p_rhs;
 
@@ -148,6 +150,23 @@ std::ostream& SoundBoard::operator >>(std::ostream& p_rhs)
 
 std::istream& SoundBoard::operator <<(std::istream& p_rhs)
 {
+    int col,row;
+    p_rhs >> col;
+    p_rhs >> row;
+    for(int icol=1;icol<col;icol++)
+    {
+        addColumn();
+    }
+    for(int irow=1;irow<row;irow++)
+    {
+        addRow();
+    }
+    for(int i=0;i<m_vect2dSoundButton.size();i++)
+    {
+        for(int j=0;j<m_vect2dSoundButton[i].size();j++)
+        {
+            *(m_vect2dSoundButton[i][j]) << p_rhs;
+        }
+    }
     return p_rhs;
-
 }

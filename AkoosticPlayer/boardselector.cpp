@@ -48,10 +48,10 @@ void BoardSelector::closeBoard(int p_index)
 
 std::ostream& BoardSelector::operator >>(std::ostream& p_rhs)
 {
-    p_rhs << m_vpSoundBoards.size();
+    p_rhs << m_vpSoundBoards.size() << std::endl;
     for(unsigned int i=0;i<m_vpSoundBoards.size();i++)
     {
-        p_rhs << ui->tabWidget->tabText(i).toStdString();
+        p_rhs << ui->tabWidget->tabText(i).toStdString() << std::endl;
         *(m_vpSoundBoards[i]) >> p_rhs;
     }
     return p_rhs;
@@ -66,9 +66,9 @@ std::istream& BoardSelector::operator <<(std::istream& p_rhs)
         m_vpSoundBoards.erase(m_vpSoundBoards.begin());
     }
 
-    int nbBoard;
+    unsigned int nbBoard;
     p_rhs >> nbBoard;
-    for(unsigned int i=0;i<m_vpSoundBoards.size();i++)
+    for(unsigned int i=0;i<nbBoard;i++)
     {
         std::string name;
         p_rhs >> name;

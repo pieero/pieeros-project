@@ -22,6 +22,9 @@
    </item>
    <item>
     <widget class="QCheckBox" name="overwriteExistingCB">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>I want to overwrite the existing preset</string>
      </property>
