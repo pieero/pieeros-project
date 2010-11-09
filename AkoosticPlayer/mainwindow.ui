@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Akoostic Player</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/icon/Resources/akoosticplayer.png</normaloff>:/icon/Resources/akoosticplayer.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
