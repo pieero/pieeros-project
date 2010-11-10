@@ -26,6 +26,8 @@ public:
 
 public slots:
     void setSource(QString p_path);
+    void resetSource();
+
 
 protected slots:
     void toggleSound();

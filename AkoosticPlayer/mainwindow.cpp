@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setAcceptDrops(true);
     m_pBoardSelector = new BoardSelector(ui->centralWidget);
     ui->centralWidget->layout()->addWidget(m_pBoardSelector);
+    setWindowIcon(QIcon());
 
     this->connect(ui->AddTabButton,SIGNAL(released()),this,SLOT(addSoundBoard()));
     this->connect(ui->savePresetButton,SIGNAL(released()),this,SLOT(savePreset()));

@@ -4,6 +4,9 @@
 QT += core \
     gui \
     phonon
+
+win32:RC_FILE = Resources/mainWindows.rc
+
 TARGET = AkoosticPlayer
 TEMPLATE = app
 SOURCES += main.cpp \

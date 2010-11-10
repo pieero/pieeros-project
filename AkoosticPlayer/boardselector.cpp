@@ -31,7 +31,9 @@ void BoardSelector::addBoard(QString p_name)
 {
     SoundBoard* sb = new SoundBoard(ui->tabWidget);
     m_vpSoundBoards.push_back(sb);
-    ui->tabWidget->addTab(sb,p_name);
+    int index;
+    index = ui->tabWidget->addTab(sb,p_name);
+
 }
 
 void BoardSelector::closeBoard(int p_index)

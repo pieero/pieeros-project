@@ -107,6 +107,15 @@ void SoundButton::setSource(QString p_path)
     ui->button->setText(name);
 }
 
+void SoundButton::resetSource()
+{
+    m_path = "";
+    m_pmediaobject->stop();
+    m_pmediaobject->clearQueue();
+    ui->button->setEnabled(false);
+    ui->button->setText("No Sound");
+}
+
 std::ostream& SoundButton::operator >>(std::ostream& p_rhs)
 {
     QString tmp = m_path;

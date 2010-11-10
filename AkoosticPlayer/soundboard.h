@@ -31,6 +31,7 @@ protected slots:
     void addColumn();
     void removeRow();
     void removeColumn();
+    void clearSoundButtons();
 
 private:
     Ui::SoundBoard *ui;

@@ -25,6 +25,7 @@ SoundBoard::SoundBoard(QWidget *parent) :
     this->connect(ui->RemoveRawButton,SIGNAL(released()),this,SLOT(removeRow()));
     this->connect(ui->AddColumnButton,SIGNAL(released()),this,SLOT(addColumn()));
     this->connect(ui->RemoveColumnButton,SIGNAL(released()),this,SLOT(removeColumn()));
+    this->connect(ui->clearButton,SIGNAL(released()),this,SLOT(clearSoundButtons()));
 
     ui->RemoveColumnButton->setEnabled(false);
     ui->RemoveRawButton->setEnabled(false);
@@ -169,4 +170,15 @@ std::istream& SoundBoard::operator <<(std::istream& p_rhs)
         }
     }
     return p_rhs;
+}
+
+void SoundBoard::clearSoundButtons()
+{
+    for(int i=0;i<m_vect2dSoundButton.size();i++)
+    {
+        for(int j=0;j<m_vect2dSoundButton[i].size();j++)
+        {
+            (m_vect2dSoundButton[i][j])->resetSource();
+        }
+    }
 }
