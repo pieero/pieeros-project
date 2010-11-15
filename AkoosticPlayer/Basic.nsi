@@ -60,6 +60,10 @@ Section ;"Dummy Section" SecDummy
   File extras\phonon4.dll
   File extras\QtCore4.dll
   File extras\QtGui4.dll
+
+  SetOutPath "$INSTDIR\phonon_backend"
+
+  File extras\phonon_backend\phonon_ds94.dll
   
   CreateDirectory "$SMPROGRAMS\Akoostic Player"
   CreateShortCut "$SMPROGRAMS\Akoostic Player\Akoostic Player.lnk" "$INSTDIR\AkoosticPlayer.exe"
