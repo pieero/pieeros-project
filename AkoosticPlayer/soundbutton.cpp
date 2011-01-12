@@ -86,12 +86,16 @@ void SoundButton::toggleSound()
     else
     {
         m_pmediaobject->stop();
+        m_pmediaobject->clearQueue();
+        m_pmediaobject->setCurrentSource(m_source);
     }
 }
 
 void SoundButton::uncheckButton()
 {
     ui->button->setChecked(false);
+    m_pmediaobject->clearQueue();
+    m_pmediaobject->setCurrentSource(m_source);
 }
 
 
@@ -112,6 +116,7 @@ void SoundButton::resetSource()
     m_path = "";
     m_pmediaobject->stop();
     m_pmediaobject->clearQueue();
+    ui->button->setChecked(false);
     ui->button->setEnabled(false);
     ui->button->setText("No Sound");
 }
